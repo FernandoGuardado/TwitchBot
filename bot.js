@@ -11,7 +11,7 @@ const config = {
     username: process.env.BOT_USERNAME,
     password: process.env.OAUTH_TOKEN,
   },
-  channels: [process.env.KRIPTXNIC],
+  channels: ['Kriptxnic'],
 };
 
 // create bot client
