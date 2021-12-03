@@ -1,7 +1,9 @@
 // twitch bot created by Fernando Guardado a.k.a Kriptxnic
-const tmi = require("tmi.js");
-var request = require('request');
-require("dotenv").config();
+import fetch from "node-fetch";
+import cheerio from "cheerio";
+import tmi from "tmi.js";
+import request from 'request'
+import dotenv from "dotenv/config"
 
 // twitch bot config
 const config = {
@@ -14,8 +16,8 @@ const config = {
 
 // create bot client
 const client = new tmi.client(config);
-// register event handlers
 
+// register event handlers & connect
 client.on("message", onMessageHandler);
 client.on("connected", onConnectHandler);
 client.connect().catch(console.error);
@@ -35,16 +37,22 @@ function onMessageHandler(channel, tags, msg, self) {
       uri: "https://www.checkmategaming.com/profile/25980/kriptonic#scheduled-matches",
     }, (error, response, body) => {
       if (body.includes('No matches found')) {
-        // currentMatch = buttons-container
-
         client.say(channel, 'No matches currently scheduled on CMG').catch(function (err) {
           console.log(err)
         });
       }
       else {
-        client.say(channel, `https://www.checkmategaming.com/profile/25980/kriptonic#scheduled-matches`).catch(function (err) {
-          console.log(err)
-        });
+        const getMatchLink = async () => {
+            const response = await fetch('https://www.checkmategaming.com/profile/25980/kriptonic#scheduled-matches');
+            const body = await response.text();
+        
+            const $ = cheerio.load(body);
+            const match = $('.buttons-container').find("a").attr('href');
+        
+            client.say(channel, `checkmategaming.com${match}`).catch(function (err) {
+                console.log(err)
+              });
+        }; getMatchLink()
       }
     })
   }
