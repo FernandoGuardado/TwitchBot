@@ -4,6 +4,7 @@ import cheerio from "cheerio";
 import tmi from "tmi.js";
 import request from 'request'
 import dotenv from "dotenv/config"
+import fs from "fs"
 
 // twitch bot config
 const config = {
@@ -11,7 +12,7 @@ const config = {
     username: process.env.BOT_USERNAME,
     password: process.env.OAUTH_TOKEN,
   },
-  channels: ['Kriptxnic'],
+  channels: ['kriptxnic', 'omnibal']
 };
 
 // create bot client
@@ -28,32 +29,43 @@ function onConnectHandler(addr, port) {
 }
 
 function onMessageHandler(channel, tags, msg, self) {
+  const channelName = channel.replace(/[^\w\s]/gi, '');
+  
   if (self) return;
 
   const command = msg.trim();
 
   if (command.toLowerCase() === "!match") {
-    request({
-      uri: "https://www.checkmategaming.com/profile/25980/kriptonic#scheduled-matches",
-    }, (error, response, body) => {
-      if (body.includes('No matches found')) {
-        client.say(channel, 'No matches currently scheduled on CMG').catch(function (err) {
-          console.log(err)
-        });
-      }
-      else {
-        const getMatchLink = async () => {
-            const response = await fetch('https://www.checkmategaming.com/profile/25980/kriptonic#scheduled-matches');
-            const body = await response.text();
-        
-            const $ = cheerio.load(body);
-            const match = $('.buttons-container').find("a").attr('href');
-        
-            client.say(channel, `checkmategaming.com${match}`).catch(function (err) {
-                console.log(err)
-              });
-        }; getMatchLink()
-      }
-    })
+    match(channelName);
   }
+}
+
+function match(channel, self) {let rawData = fs.readFileSync('cod_data.json');
+  let CMG = JSON.parse(rawData).Checkmate
+  
+  console.log(CMG[channel]);
+
+  request({
+    uri: `https://www.checkmategaming.com/profile/${CMG[channel]}#scheduled-matches`,
+  }, (error, response, body,) => {
+
+    if (body.includes('No matches found')) {
+      client.say(channel, 'No matches currently scheduled on CMG').catch(function (err) {
+        console.log(err)
+      });
+    }
+    else {
+      const getMatchLink = async () => {
+          const response = await fetch(`https://www.checkmategaming.com/profile/${CMG[channel]}#scheduled-matches`);
+          const profileBody = await response.text();
+
+          const $ = cheerio.load(profileBody);
+          const match = $('.buttons-container').find("a").attr('href');
+
+          client.say(channel, `checkmategaming.com${match}`).catch(function (err) {
+              console.log(err)
+            });
+      }; getMatchLink()
+    }
+  })
 }
