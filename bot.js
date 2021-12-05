@@ -12,7 +12,7 @@ const config = {
     username: process.env.BOT_USERNAME,
     password: process.env.OAUTH_TOKEN,
   },
-  channels: ['kriptxnic', 'omnibal', 'yxgster']
+  channels: ['kriptxnic', 'omnibal', 'yxgster', 'daunttt']
 };
 
 // create bot client
