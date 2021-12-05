@@ -12,7 +12,7 @@ const config = {
     username: process.env.BOT_USERNAME,
     password: process.env.OAUTH_TOKEN,
   },
-  channels: ['kriptxnic', 'omnibal']
+  channels: ['kriptxnic', 'omnibal', 'yxgster']
 };
 
 // create bot client
@@ -42,8 +42,6 @@ function onMessageHandler(channel, tags, msg, self) {
 
 function match(channel, self) {let rawData = fs.readFileSync('cod_data.json');
   let CMG = JSON.parse(rawData).Checkmate
-  
-  console.log(CMG[channel]);
 
   request({
     uri: `https://www.checkmategaming.com/profile/${CMG[channel]}#scheduled-matches`,
