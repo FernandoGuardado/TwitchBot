@@ -76,12 +76,10 @@ function match(channel, self) {
             })
             for (let i = 0; i < map_list.length; i++) {
               if (map_list[i].includes('Search')) {
-                map_list[i] = map_list[i].replace('Search and Destroy:', '').replace('Host', '').split(':')[0]
-                // map_list[i] = map_list[i].split(' ')[3].replace('Host:', '');
+                map_list[i] = map_list[i].replace('Search and Destroy:', '').replace('Host', '').split(':')[0];
               }
               else if (map_list[i].includes('Hardpoint')) {
-                map_list[i] = map_list[i].replace('Hardpoint:', '').replace('Host', '').split(':')[0]
-                // map_list[i] = map_list[i].split(' ')[1].replace('Host:', '');
+                map_list[i] = map_list[i].replace('Hardpoint:', '').replace('Host', '').split(':')[0];
               }
             }
             if (map_list.length > 1) {
