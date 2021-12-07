@@ -12,7 +12,7 @@ const config = {
     username: process.env.BOT_USERNAME,
     password: process.env.OAUTH_TOKEN,
   },
-  channels: ['kriptxnicbot']
+  channels: ['kriptxnic', 'omnibal', 'yxgster', 'daunttt']
 };
 
 // create bot client
@@ -76,10 +76,12 @@ function match(channel, self) {
             })
             for (let i = 0; i < map_list.length; i++) {
               if (map_list[i].includes('Search')) {
-                map_list[i] = map_list[i].replace('Search and Destroy:', '').replace('Host', '').split(':')[0];
+                map_list[i] = map_list[i].replace('Search and Destroy:', '').replace('Host', '').split(':')[0]
+                // map_list[i] = map_list[i].split(' ')[3].replace('Host:', '');
               }
               else if (map_list[i].includes('Hardpoint')) {
-                map_list[i] = map_list[i].replace('Hardpoint:', '').replace('Host', '').split(':')[0];
+                map_list[i] = map_list[i].replace('Hardpoint:', '').replace('Host', '').split(':')[0]
+                // map_list[i] = map_list[i].split(' ')[1].replace('Host:', '');
               }
             }
             if (map_list.length > 1) {
