@@ -1,1 +1,1 @@
-worker: node dist/CallOfDuty/bot.js
+worker: node src/CallOfDuty/bot.js
