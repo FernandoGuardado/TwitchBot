@@ -118,7 +118,7 @@ function match(channel, self) {
                 }
                 if (map_list.length > 1) {
                   if (cash_match) {
-                    var match_message = `${cash_match} pool | `;
+                    var match_message = `${cash_match} pot | `;
                     for (let i = 0; i < map_list.length; i++) {
                       match_message += `Map ${i + 1}: ${map_list[i]} | `;
                     }
