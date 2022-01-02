@@ -6,18 +6,13 @@ import request from "request";
 import dotenv from "dotenv/config";
 import fs from "fs";
 
-// TODO add error checks for undefined CMG
-// TODO add firebase (firestore) for data; users, cod_data, everything... !!!
-// TODO move twitch bot config to own file; i.e. make an app/index.js
-// TODO try and import cod folder through an index.js
-
 // twitch bot config
 const config = {
   identity: {
     username: process.env.BOT_USERNAME,
     password: process.env.OAUTH_TOKEN,
   },
-  channels: ["kriptxnicbot"],
+  channels: ["kriptxnic", "omnibal", "yxgster", "daunttt", "tuttuhl"],
 };
 
 // create bot client
