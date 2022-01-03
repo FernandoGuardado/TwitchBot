@@ -108,15 +108,11 @@ function match(channel, self) {
                     map_list[i] = map_list[i]
                       .replace("Search and Destroy:", "")
                       .replace("Host", "")
-                      .replace("CDL", "")
-                      .replace(/\s/g, "")
                       .split(":")[0];
                   } else if (map_list[i].includes("Hardpoint")) {
                     map_list[i] = map_list[i]
                       .replace("Hardpoint:", "")
                       .replace("Host", "")
-                      .replace("CDL", "")
-                      .replace(/\s/g, "")
                       .split(":")[0];
                   }
                 }
