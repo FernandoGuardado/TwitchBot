@@ -41,7 +41,7 @@ function onMessageHandler(channel, tags, msg, self) {
 }
 
 function match(channel, self) {
-  const rawData = fs.readFileSync("src/CallOfDuty/cod_data.json");
+  const rawData = fs.readFileSync("build/CallOfDuty/cod_data.json");
   const user_data = JSON.parse(rawData).Users[channel];
   const CMG = user_data.CMG;
 
@@ -118,9 +118,9 @@ function match(channel, self) {
                 }
                 if (map_list.length > 1) {
                   if (cash_match) {
-                    var match_message = `${cash_match} pot | `;
+                    var match_message = `${cash_match} pool | `;
                     for (let i = 0; i < map_list.length; i++) {
-                      match_message += `Map ${i + 1}: ${map_list[i]} | `;
+                      match_message += `Map ${i + 1}: ${map_list[i].replace("CDL", "").replace(/\s/g, "")} | `;
                     }
                     match_message += `checkmategaming.com${match}`;
 
@@ -130,7 +130,7 @@ function match(channel, self) {
                   } else {
                     var match_message = "";
                     for (let i = 0; i < map_list.length; i++) {
-                      match_message += `Map ${i + 1}: ${map_list[i]} | `;
+                      match_message += `Map ${i + 1}: ${map_list[i].replace("CDL", "").replace(/\s/g, "")} | `;
                     }
                     match_message += `checkmategaming.com${match}`;
 
@@ -143,7 +143,7 @@ function match(channel, self) {
                     client
                       .say(
                         channel,
-                        `${cash_match} pot Bo1: ${map_list[0]} | checkmategaming.com${match}`
+                        `${cash_match} pot Bo1: ${map_list[0].replace("CDL", "").replace(/\s/g, "")} | checkmategaming.com${match}`
                       )
                       .catch(function (err) {
                         console.log(err);
@@ -153,7 +153,7 @@ function match(channel, self) {
                     client
                       .say(
                         channel,
-                        `Bo1: ${map_list[0]} | checkmategaming.com${match}`
+                        `Bo1: ${map_list[0].replace("CDL", "").replace(/\s/g, "")} | checkmategaming.com${match}`
                       )
                       .catch(function (err) {
                         console.log(err);
