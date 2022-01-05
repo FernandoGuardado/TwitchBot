@@ -41,7 +41,7 @@ function onMessageHandler(channel, tags, msg, self) {
 }
 
 function match(channel, self) {
-  const rawData = fs.readFileSync("build/CallOfDuty/cod_data.json");
+  const rawData = fs.readFileSync("src/CallOfDuty/cod_data.json");
   const user_data = JSON.parse(rawData).Users[channel];
   const CMG = user_data.CMG;
 
