@@ -58,11 +58,11 @@ function match(channel, self) {
     },
     (error, response, body) => {
       if (body.includes("No matches found")) {
-        client
-          .say(channel, "No matches currently scheduled on CMG")
-          .catch(function (err) {
-            console.log(err);
-          });
+        // client
+        //   .say(channel, "No matches currently scheduled on CMG")
+        //   .catch(function (err) {
+        //     console.log(err);
+        //   });
       } else {
         const getMatchLink = async () => {
           // get profile/scheduled matches body
