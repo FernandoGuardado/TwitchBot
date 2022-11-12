@@ -12,7 +12,14 @@ const config = {
     username: process.env.BOT_USERNAME,
     password: process.env.OAUTH_TOKEN,
   },
-  channels: ["kriptxnic", "omnibal", "yxgster", "daunttt", "tuttuhl"],
+  channels: [
+    "kriptxnic",
+    "omnibal",
+    "yxgster",
+    "daunttt",
+    "tuttuhl",
+    "rubhixs",
+  ],
 };
 
 // create bot client
@@ -78,7 +85,7 @@ function match(channel, self) {
                   `https://www.checkmategaming.com/${match}`
                 );
                 const match_body = await match_response.text();
-                let $ = cheerio.load(match_body);   // target match body with cheerio
+                let $ = cheerio.load(match_body); // target match body with cheerio
 
                 // check to see if player is in the match
                 if (!match_body.includes(CMG.replace(/[0-9]/g, ""))) {
@@ -93,7 +100,10 @@ function match(channel, self) {
                 // check to see if cash match
                 if (match_body.toLowerCase().includes("cash")) {
                   var cash_match = $(".match-details-pool").text();
-                  cash_match = cash_match.substring(0, cash_match.indexOf(" ")).replace("Total", "").replace(/\s/g, "");
+                  cash_match = cash_match
+                    .substring(0, cash_match.indexOf(" "))
+                    .replace("Total", "")
+                    .replace(/\s/g, "");
                 }
 
                 // get map list
@@ -120,7 +130,9 @@ function match(channel, self) {
                   if (cash_match) {
                     var match_message = `${cash_match} pot | `;
                     for (let i = 0; i < map_list.length; i++) {
-                      match_message += `Map ${i + 1}: ${map_list[i].replace("CDL", "").replace(/\s/g, "")} | `;
+                      match_message += `Map ${i + 1}: ${map_list[i]
+                        .replace("CDL", "")
+                        .replace(/\s/g, "")} | `;
                     }
                     match_message += `checkmategaming.com${match}`;
 
@@ -130,7 +142,9 @@ function match(channel, self) {
                   } else {
                     var match_message = "";
                     for (let i = 0; i < map_list.length; i++) {
-                      match_message += `Map ${i + 1}: ${map_list[i].replace("CDL", "").replace(/\s/g, "")} | `;
+                      match_message += `Map ${i + 1}: ${map_list[i]
+                        .replace("CDL", "")
+                        .replace(/\s/g, "")} | `;
                     }
                     match_message += `checkmategaming.com${match}`;
 
@@ -143,17 +157,20 @@ function match(channel, self) {
                     client
                       .say(
                         channel,
-                        `${cash_match} pot Bo1: ${map_list[0].replace("CDL", "").replace(/\s/g, "")} | checkmategaming.com${match}`
+                        `${cash_match} pot Bo1: ${map_list[0]
+                          .replace("CDL", "")
+                          .replace(/\s/g, "")} | checkmategaming.com${match}`
                       )
                       .catch(function (err) {
                         console.log(err);
                       });
-                  }
-                  else {
+                  } else {
                     client
                       .say(
                         channel,
-                        `Bo1: ${map_list[0].replace("CDL", "").replace(/\s/g, "")} | checkmategaming.com${match}`
+                        `Bo1: ${map_list[0]
+                          .replace("CDL", "")
+                          .replace(/\s/g, "")} | checkmategaming.com${match}`
                       )
                       .catch(function (err) {
                         console.log(err);
