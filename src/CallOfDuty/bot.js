@@ -89,11 +89,11 @@ function match(channel, self) {
 
                 // check to see if player is in the match
                 if (!match_body.includes(CMG.replace(/[0-9]/g, ""))) {
-                  client
-                    .say(channel, "No matches currently scheduled on CMG")
-                    .catch(function (err) {
-                      console.log(err);
-                    });
+                  // client
+                  //   .say(channel, "No matches currently scheduled on CMG")
+                  //   .catch(function (err) {
+                  //     console.log(err);
+                  //   });
                   return;
                 }
 
